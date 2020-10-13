@@ -2,19 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\Wish;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-class WishFactory extends Factory
+class UserFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Wish::class;
+    protected $model = User::class;
 
     /**
      * Define the model's default state.
@@ -25,9 +24,11 @@ class WishFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'wish' => $this->faker->paragraphs($nbSentences =3, $variableNbSentences = true),
-            'user_id' =>  User::factory(),
-            
+            'email' => $this->faker->unique()->safeEmail,
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+            'api_token' => Str::random(32)
         ];
     }
 }

@@ -14,7 +14,7 @@ class WishController extends Controller
      */
     public function index()
     {
-        //
+        return request()->user()->wishes;
     }
 
     /**
@@ -35,11 +35,12 @@ class WishController extends Controller
      */
     public function store(Request $request)
     {
-        // $wish = request()->user()->contacts()->create()
-        Wish::create([
-            'name' => request('name'),
-            'wish'  => request('wish')
-        ]);
+        $wish = request()->user()->wishes()->create($this->validateData());
+        // Wish::create([
+        //     'name' => request('name'),
+        //     'wish'  => request('wish'),
+            
+        // ]);
     }
 
     /**
@@ -50,6 +51,9 @@ class WishController extends Controller
      */
     public function show(Wish $wish)
     {
+        if(request()->user()->isNot($wish->user)){
+            return \response([],403);
+        }
         return $wish;
     //    return response()->json($wish,Response::HTTP_OK);
     }
@@ -74,10 +78,11 @@ class WishController extends Controller
      */
     public function update(Request $request, Wish $wish)
     {
-        $wish->update([
-            'name' => request('name'),
-            'wish'  => request('wish')
-        ]);
+        if(request()->user()->isNot($wish->user)){
+            return \response([],403);
+        }
+
+        $wish->update($this->validateData());
     }
 
     /**
@@ -88,13 +93,16 @@ class WishController extends Controller
      */
     public function destroy(Wish $wish)
     {
+        if(request()->user()->isNot($wish->user)){
+            return \response([],403);
+        }
         $wish->delete();
     }
 
-    private function validate_data(){
+    private function validateData(){
         return \request()->validate([
-            'name' => 'required',
-            'wish' => 'required',
+            'name' => 'required|max:255',
+            'wish' => 'required|max:255',
         ]);
 
     }

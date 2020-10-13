@@ -18,18 +18,18 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-// Route::middleware('auth:api')->group(function() {
-//    Route::get('/wishes','App\Http\Controllers\WishController@index');
-//    Route::post('/wishes','App\Http\Controllers\WishController@store');
-//    Route::get('/wishes/{wish}','App\Http\Controllers\WishController@show');
-//    Route::patch('/wishes/{wish}','App\Http\Controllers\WishController@update');
-//    Route::delete('/wishes/{wish}','App\Http\Controllers\WishController@destroy');
-// });
-
-
+Route::middleware('auth:api')->group(function() {
    Route::get('/wishes','App\Http\Controllers\WishController@index');
    Route::post('/wishes','App\Http\Controllers\WishController@store');
    Route::get('/wishes/{wish}','App\Http\Controllers\WishController@show');
    Route::patch('/wishes/{wish}','App\Http\Controllers\WishController@update');
    Route::delete('/wishes/{wish}','App\Http\Controllers\WishController@destroy');
+});
+
+
+//    Route::get('/wishes','App\Http\Controllers\WishController@index');
+//    Route::post('/wishes','App\Http\Controllers\WishController@store');
+//    Route::get('/wishes/{wish}','App\Http\Controllers\WishController@show');
+//    Route::patch('/wishes/{wish}','App\Http\Controllers\WishController@update');
+//    Route::delete('/wishes/{wish}','App\Http\Controllers\WishController@destroy');
 
