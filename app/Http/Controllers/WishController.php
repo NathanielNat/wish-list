@@ -35,7 +35,11 @@ class WishController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $wish = request()->user()->contacts()->create()
+        Wish::create([
+            'name' => request('name'),
+            'wish'  => request('wish')
+        ]);
     }
 
     /**
@@ -46,7 +50,8 @@ class WishController extends Controller
      */
     public function show(Wish $wish)
     {
-        //
+        return $wish;
+    //    return response()->json($wish,Response::HTTP_OK);
     }
 
     /**
@@ -69,7 +74,10 @@ class WishController extends Controller
      */
     public function update(Request $request, Wish $wish)
     {
-        //
+        $wish->update([
+            'name' => request('name'),
+            'wish'  => request('wish')
+        ]);
     }
 
     /**
@@ -80,6 +88,14 @@ class WishController extends Controller
      */
     public function destroy(Wish $wish)
     {
-        //
+        $wish->delete();
+    }
+
+    private function validate_data(){
+        return \request()->validate([
+            'name' => 'required',
+            'wish' => 'required',
+        ]);
+
     }
 }
