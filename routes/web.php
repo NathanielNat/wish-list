@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Auth::routes();
+
+// Route::get('/{any}', [App\Http\Controllers\AppController::class, 'index'])->where('any','*');
+
+// gets any route and sends to the app controller 
+
+// Route::get('/{any}', 'AppController@index')->where('any','.*');
+Route::get('/{any}',  [App\Http\Controllers\AppController::class, 'index'])->where('any','.*');
