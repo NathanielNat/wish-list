@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->group(function() {
    Route::get('/wishes','App\Http\Controllers\WishController@index');
+   Route::get('/wishes/create','App\Http\Controllers\WishController@create');
    Route::post('/wishes','App\Http\Controllers\WishController@store');
    Route::get('/wishes/{wish}','App\Http\Controllers\WishController@show');
    Route::patch('/wishes/{wish}','App\Http\Controllers\WishController@update');

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Wish;
 use Illuminate\Http\Request;
+use \Illuminate\Http\Response;
+
 
 class WishController extends Controller
 {
@@ -14,7 +16,11 @@ class WishController extends Controller
      */
     public function index()
     {
-        return request()->user()->wishes;
+        $this->authorize('viewAny',Wish::class);
+        
+        $wishes =  request()->user()->wishes;
+
+        return \response()->json(['data' => $wish],Response::HTTP_OK);
     }
 
     /**
@@ -22,10 +28,10 @@ class WishController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+    // public function create()
+    // {
+    //     return view('ceate');
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -35,12 +41,11 @@ class WishController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create',Wish::class);
         $wish = request()->user()->wishes()->create($this->validateData());
-        // Wish::create([
-        //     'name' => request('name'),
-        //     'wish'  => request('wish'),
-            
-        // ]);
+
+       return \response()->json(['data' => $wish],Response::HTTP_OK);
+ 
     }
 
     /**
@@ -51,9 +56,7 @@ class WishController extends Controller
      */
     public function show(Wish $wish)
     {
-        if(request()->user()->isNot($wish->user)){
-            return \response([],403);
-        }
+       $this->authorize('view',$wish);
         return $wish;
     //    return response()->json($wish,Response::HTTP_OK);
     }
@@ -78,11 +81,9 @@ class WishController extends Controller
      */
     public function update(Request $request, Wish $wish)
     {
-        if(request()->user()->isNot($wish->user)){
-            return \response([],403);
-        }
-
-        $wish->update($this->validateData());
+        $this->authorize('update',$wish);
+       $wish =  $wish->update($this->validateData());
+        return \response()->json(['data' => $wish],Response::HTTP_OK);
     }
 
     /**
@@ -97,6 +98,7 @@ class WishController extends Controller
             return \response([],403);
         }
         $wish->delete();
+        return \response()->json(['data' => $wish],Response::HTTP_OK);
     }
 
     private function validateData(){
