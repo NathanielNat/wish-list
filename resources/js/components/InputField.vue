@@ -2,7 +2,7 @@
         <div class="relative pt-8">
               <label :for="name" class="text-teal-500 text-uppercase font-bold text-small absolute ">{{label}}</label>
               <input :id="name" type="text" class="pt-8 w-full border-b pb-2 focus:outline-none focus:border-teal-400 text-gray-900" :class="erorClassObject()" :placeholder="placeholder" v-model="value" @input="updateField()">
-              <p class="text-red-600 text-sm" v-text="errorMessage()">Hi</p>
+              <p class="text-red-600 text-sm" v-text="errorMessage()">Error Message</p>
           </div>
    
 </template> 
@@ -12,7 +12,7 @@
         name: 'InputField',
 
         props: [
-            'name', 'label', 'placeholder', 'errors'
+            'name', 'label', 'placeholder', 'errors','data',
         ],
 
         data: function() {
@@ -40,6 +40,11 @@
              return {
                   'error-field': this.errors && this.errors[this.name] && this.errors[this.name].length >0
              }
+            }
+        },
+         watch: {
+            data: function (val) {
+                this.value = val;
             }
         }
     }

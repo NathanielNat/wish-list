@@ -7,7 +7,7 @@
                 Back
             </div>
             <div class="relative">
-                <router-link :to="'/wish/'+ wish.id + '/edit'"
+                <router-link :to="'/wishes/'+ wish.id + '/edit'"
                     class="px-4 py-2 rounded text-green-500 border border-green-500 text-sm font-bold mr-2">Edit
                 </router-link>
                 <a href="#" class="px-4 py-2 border rounded border-red-500 text-sm font-bold text-red-500" @click="modal= !modal "> Delete</a>
