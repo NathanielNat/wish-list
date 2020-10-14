@@ -2117,7 +2117,11 @@ __webpack_require__.r(__webpack_exports__);
     submitForm: function submitForm() {
       var _this = this;
 
-      axios.post('/api/wishes', this.form).then(function (response) {})["catch"](function (errors) {
+      axios.post('/api/wishes', this.form).then(function (response) {
+        // console.log(response.data.data.id)
+        //redirect after routing
+        _this.$router.push('/wishes/' + response.data.data.id);
+      })["catch"](function (errors) {
         _this.errors = errors.response.data.errors;
       });
     }
@@ -2158,6 +2162,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'WishesShow',
   mounted: function mounted() {
@@ -2165,12 +2183,32 @@ __webpack_require__.r(__webpack_exports__);
 
     axios.get('/api/wishes/' + this.$route.params.id).then(function (response) {
       _this.wish = response.data.data;
-    })["catch"](function (error) {});
+      _this.loading = false;
+    })["catch"](function (error) {
+      _this.loading = false; // redirect back to wishes page if response is 404
+
+      if (error.response.status == 404) {
+        _this.$router.push('/wishes');
+      }
+    });
   },
   data: function data() {
     return {
+      loading: true,
+      modal: false,
       wish: null
     };
+  },
+  methods: {
+    destroy: function destroy() {
+      var _this2 = this;
+
+      axios["delete"]('/api/wishes/' + this.$route.params.id).then(function (response) {
+        _this2.$router.push('/wishes');
+      })["catch"](function (error) {
+        alert('Error, unable to delete');
+      });
+    }
   }
 });
 
@@ -38808,59 +38846,127 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "flex justify-between" }, [
-      _c("div", { staticClass: "text-teal-400" }, [
-        _vm._v("\n               Back \n          ")
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        [
-          _c(
-            "router-link",
-            {
-              staticClass:
-                "px-4 py-2 rounded text-green-500 border border-green-500 text-sm font-bold mr-2",
-              attrs: { to: "/wish/" + _vm.wish.id + "/edit" }
-            },
-            [_vm._v("Edit")]
-          ),
+    _vm.loading
+      ? _c("div", [_vm._v("Loading...")])
+      : _c("div", [
+          _c("div", { staticClass: "flex justify-between" }, [
+            _c("div", { staticClass: "text-teal-400" }, [
+              _vm._v("\n            Back\n        ")
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "relative" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass:
+                      "px-4 py-2 rounded text-green-500 border border-green-500 text-sm font-bold mr-2",
+                    attrs: { to: "/wish/" + _vm.wish.id + "/edit" }
+                  },
+                  [_vm._v("Edit\n            ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass:
+                      "px-4 py-2 border rounded border-red-500 text-sm font-bold text-red-500",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        _vm.modal = !_vm.modal
+                      }
+                    }
+                  },
+                  [_vm._v(" Delete")]
+                ),
+                _vm._v(" "),
+                _vm.modal
+                  ? _c(
+                      "div",
+                      {
+                        staticClass:
+                          "absolute bg-teal-900 text-white rounded-lg z-20 p-8 w-64 right-0 mr-5 mt-6"
+                      },
+                      [
+                        _c("p", [_vm._v("Are you sure you want to delete? ")]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "flex items-center mt-6 justify-end" },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "rounded text-white pr-2 ",
+                                on: {
+                                  click: function($event) {
+                                    _vm.modal = !_vm.modal
+                                  }
+                                }
+                              },
+                              [_vm._v("Cancel")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "px-4 py-2 bg-red-500 rounded text-sm font-bold font-white",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.destroy()
+                                  }
+                                }
+                              },
+                              [_vm._v("Delete")]
+                            )
+                          ]
+                        )
+                      ]
+                    )
+                  : _vm._e()
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _vm.modal
+              ? _c("div", {
+                  staticClass:
+                    "bg-black opacity-25  absolute right-0 left-0 top-0 bottom-0 z-10",
+                  on: {
+                    click: function($event) {
+                      _vm.modal = !_vm.modal
+                    }
+                  }
+                })
+              : _vm._e()
+          ]),
           _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass:
-                "px-4 py-2 border rounded border-red-500 text-sm font-bold text-red-500",
-              attrs: { href: "#" }
-            },
-            [_vm._v(" Delete")]
-          )
-        ],
-        1
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "pt-6" }, [
-      _c(
-        "p",
-        { staticClass: "pt-6 text-gray-600 text-sm font-bold uppercase" },
-        [_vm._v("Name of Wish")]
-      ),
-      _vm._v(" "),
-      _c("p", { staticClass: "pt-2 text-teal-300" }, [
-        _vm._v(_vm._s(_vm.wish.name))
-      ]),
-      _vm._v(" "),
-      _c(
-        "p",
-        { staticClass: "pt-6 text-gray-600 text-sm font-bold uppercase" },
-        [_vm._v("What you wished for")]
-      ),
-      _vm._v(" "),
-      _c("p", { staticClass: "pt-2 text-teal-300" }, [
-        _vm._v(_vm._s(_vm.wish.wish))
-      ])
-    ])
+          _c("div", { staticClass: "pt-6" }, [
+            _c(
+              "p",
+              { staticClass: "pt-6 text-gray-600 text-sm font-bold uppercase" },
+              [_vm._v("Name of Wish")]
+            ),
+            _vm._v(" "),
+            _c("p", { staticClass: "pt-2 text-teal-300" }, [
+              _vm._v(_vm._s(_vm.wish.name))
+            ]),
+            _vm._v(" "),
+            _c(
+              "p",
+              { staticClass: "pt-6 text-gray-600 text-sm font-bold uppercase" },
+              [_vm._v("What you wished for")]
+            ),
+            _vm._v(" "),
+            _c("p", { staticClass: "pt-2 text-teal-300" }, [
+              _vm._v(_vm._s(_vm.wish.wish))
+            ])
+          ])
+        ])
   ])
 }
 var staticRenderFns = []

@@ -35,8 +35,11 @@ export default {
     },
     methods: {
         submitForm: function(){
-            axios.post('/api/wishes',this.form).then(response =>{
-
+            axios.post('/api/wishes',this.form)
+            .then(response =>{
+                // console.log(response.data.data.id)
+                //redirect after routing
+                 this.$router.push('/wishes/'+response.data.data.id)
             }).catch(errors=>{
                 this.errors = errors.response.data.errors
             })
