@@ -57,8 +57,8 @@ class WishController extends Controller
     public function show(Wish $wish)
     {
        $this->authorize('view',$wish);
-        return $wish;
-    //    return response()->json($wish,Response::HTTP_OK);
+        // return $wish;
+       return response()->json(['data'=>$wish],Response::HTTP_OK);
     }
 
     /**
