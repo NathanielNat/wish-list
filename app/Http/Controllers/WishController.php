@@ -20,7 +20,7 @@ class WishController extends Controller
         
         $wishes =  request()->user()->wishes;
 
-        return \response()->json(['data' => $wish],Response::HTTP_OK);
+        return \response()->json(['data' => $wishes],Response::HTTP_OK);
     }
 
     /**

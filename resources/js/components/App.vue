@@ -38,7 +38,7 @@
             <div class="flex flex-col flex-1 h-screen overflow-y-hidden">
                 <div class="h-16 px-6 py-3 border-b border-gray-400 flex items-center justify-between ">
                     <div>Contacts</div>
-                    <div class="bg-blue-300 text-white text-2x p-2 rounded-full border border-gray-400">{{this.user.name.match(/[A-Z]/g).slice(0,2).join('')}}</div>
+                    <div class="bg-teal-300 text-white text-2x p-2 rounded-full border border-gray-400">{{this.user.name.match(/[A-Z]/g).slice(0,2).join('')}}</div>
 
                 </div>
 
