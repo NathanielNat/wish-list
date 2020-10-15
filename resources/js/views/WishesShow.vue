@@ -4,9 +4,12 @@
         <div v-else>
             <div class="flex justify-between">
             <div class="text-teal-400">
-                Back
+              <a href="#" class="text-teal-400" @click="$router.back()">
+                 Back 
+            </a>
             </div>
             <div class="relative">
+                <!-- {{user.id}} -->
                 <router-link :to="'/wishes/'+ wish.id + '/edit'"
                     class="px-4 py-2 rounded text-green-500 border border-green-500 text-sm font-bold mr-2">Edit
                 </router-link>
@@ -38,11 +41,12 @@
 <script>
     export default {
         name: 'WishesShow',
-
+   
         mounted() {
             axios.get('/api/wishes/' + this.$route.params.id)
                 .then(response => {
                     this.wish = response.data.data
+                   
                     this.loading = false
                 })
                 .catch(error => {
@@ -59,7 +63,8 @@
             return {
                 loading: true,
                 modal: false,
-                wish: null
+                wish: null,
+                
             }
         },
         methods:{

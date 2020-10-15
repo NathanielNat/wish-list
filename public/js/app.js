@@ -2079,6 +2079,30 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Logout.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Logout.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "Logout",
+  created: function created() {
+    axios.post('/logout', {})["finally"](function (err) {
+      window.location = '/login';
+    });
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/WishesCreate.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/WishesCreate.vue?vue&type=script&lang=js& ***!
@@ -2245,8 +2269,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'WishesIndex',
+  props: ['user'],
   mounted: function mounted() {
     var _this = this;
 
@@ -2277,6 +2304,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -38655,7 +38685,7 @@ var render = function() {
                 {
                   staticClass:
                     "flex items-center py-2 hover:text-teal-600 text-sm",
-                  attrs: { to: "/" }
+                  attrs: { to: "/wishes" }
                 },
                 [
                   _c("p", { staticClass: "tracking-wide pl-3 " }, [
@@ -38677,7 +38707,7 @@ var render = function() {
                 {
                   staticClass:
                     "flex items-center py-2 hover:text-blue-600 text-sm",
-                  attrs: { to: "/" }
+                  attrs: { to: "/logout" }
                 },
                 [
                   _c(
@@ -38875,6 +38905,30 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Logout.vue?vue&type=template&id=5cc5eeb5&scoped=true&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Logout.vue?vue&type=template&id=5cc5eeb5&scoped=true& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div")
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/WishesCreate.vue?vue&type=template&id=5d3ffde0&":
 /*!**********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/WishesCreate.vue?vue&type=template&id=5d3ffde0& ***!
@@ -38996,7 +39050,7 @@ var render = function() {
             }
           }
         },
-        [_vm._v("\n             Back\n        ")]
+        [_vm._v("\n             Back \n        ")]
       )
     ]),
     _vm._v(" "),
@@ -39142,7 +39196,7 @@ var render = function() {
                           "px-4 py-2 rounded text-teal-500 border border-teal-500 text-sm font-bold mr-2",
                         attrs: { to: "/wishes/" + wish.id }
                       },
-                      [_vm._v("View\n              ")]
+                      [_vm._v("View\n                  ")]
                     )
                   ],
                   1
@@ -39182,7 +39236,19 @@ var render = function() {
       : _c("div", [
           _c("div", { staticClass: "flex justify-between" }, [
             _c("div", { staticClass: "text-teal-400" }, [
-              _vm._v("\n            Back\n        ")
+              _c(
+                "a",
+                {
+                  staticClass: "text-teal-400",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      return _vm.$router.back()
+                    }
+                  }
+                },
+                [_vm._v("\n             Back \n        ")]
+              )
             ]),
             _vm._v(" "),
             _c(
@@ -54835,6 +54901,76 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Logout.vue":
+/*!********************************************!*\
+  !*** ./resources/js/components/Logout.vue ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Logout_vue_vue_type_template_id_5cc5eeb5_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Logout.vue?vue&type=template&id=5cc5eeb5&scoped=true& */ "./resources/js/components/Logout.vue?vue&type=template&id=5cc5eeb5&scoped=true&");
+/* harmony import */ var _Logout_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Logout.vue?vue&type=script&lang=js& */ "./resources/js/components/Logout.vue?vue&type=script&lang=js&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Logout_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Logout_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Logout_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Logout_vue_vue_type_template_id_5cc5eeb5_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Logout_vue_vue_type_template_id_5cc5eeb5_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "5cc5eeb5",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Logout.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Logout.vue?vue&type=script&lang=js&":
+/*!*********************************************************************!*\
+  !*** ./resources/js/components/Logout.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Logout_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Logout.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Logout.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Logout_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Logout.vue?vue&type=template&id=5cc5eeb5&scoped=true&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/Logout.vue?vue&type=template&id=5cc5eeb5&scoped=true& ***!
+  \***************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Logout_vue_vue_type_template_id_5cc5eeb5_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Logout.vue?vue&type=template&id=5cc5eeb5&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Logout.vue?vue&type=template&id=5cc5eeb5&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Logout_vue_vue_type_template_id_5cc5eeb5_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Logout_vue_vue_type_template_id_5cc5eeb5_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/router.js":
 /*!********************************!*\
   !*** ./resources/js/router.js ***!
@@ -54848,10 +54984,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _components_ExampleComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/ExampleComponent */ "./resources/js/components/ExampleComponent.vue");
-/* harmony import */ var _views_WishesCreate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./views/WishesCreate */ "./resources/js/views/WishesCreate.vue");
-/* harmony import */ var _views_WishesShow__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./views/WishesShow */ "./resources/js/views/WishesShow.vue");
-/* harmony import */ var _views_WishesEdit__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./views/WishesEdit */ "./resources/js/views/WishesEdit.vue");
-/* harmony import */ var _views_WishesIndex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./views/WishesIndex */ "./resources/js/views/WishesIndex.vue");
+/* harmony import */ var _components_Logout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Logout */ "./resources/js/components/Logout.vue");
+/* harmony import */ var _views_WishesCreate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./views/WishesCreate */ "./resources/js/views/WishesCreate.vue");
+/* harmony import */ var _views_WishesShow__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./views/WishesShow */ "./resources/js/views/WishesShow.vue");
+/* harmony import */ var _views_WishesEdit__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./views/WishesEdit */ "./resources/js/views/WishesEdit.vue");
+/* harmony import */ var _views_WishesIndex__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./views/WishesIndex */ "./resources/js/views/WishesIndex.vue");
+
 
 
 
@@ -54866,16 +55004,19 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     component: _components_ExampleComponent__WEBPACK_IMPORTED_MODULE_2__["default"]
   }, {
     path: "/wishes",
-    component: _views_WishesIndex__WEBPACK_IMPORTED_MODULE_6__["default"]
+    component: _views_WishesIndex__WEBPACK_IMPORTED_MODULE_7__["default"]
   }, {
     path: "/wishes/create",
-    component: _views_WishesCreate__WEBPACK_IMPORTED_MODULE_3__["default"]
+    component: _views_WishesCreate__WEBPACK_IMPORTED_MODULE_4__["default"]
   }, {
     path: "/wishes/:id",
-    component: _views_WishesShow__WEBPACK_IMPORTED_MODULE_4__["default"]
+    component: _views_WishesShow__WEBPACK_IMPORTED_MODULE_5__["default"]
   }, {
     path: "/wishes/:id/edit",
-    component: _views_WishesEdit__WEBPACK_IMPORTED_MODULE_5__["default"]
+    component: _views_WishesEdit__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }, {
+    path: "/logout",
+    component: _components_Logout__WEBPACK_IMPORTED_MODULE_3__["default"]
   }],
   mode: 'history'
 }));

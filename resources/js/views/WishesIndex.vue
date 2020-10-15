@@ -13,8 +13,10 @@
                    {{wish.wish}}
               </div>
               <div>
+                 <!-- {{this.user.name}} -->
                   <router-link :to="'/wishes/'+ wish.id"
                     class="px-4 py-2 rounded text-teal-500 border border-teal-500 text-sm font-bold mr-2">View
+                    <!-- {{this.user.name}} -->
                 </router-link>
               </div>
              
@@ -26,12 +28,15 @@
 <script>
 export default {
     name: 'WishesIndex',
+    props: [
+        'user'
+    ],
 
     mounted(){
         axios.get('/api/wishes')
         .then(response => {
             this.wishes = response.data.data
-          
+            
             this.loading = false
         })
         .catch(error =>{

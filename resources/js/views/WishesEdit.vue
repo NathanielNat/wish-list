@@ -2,7 +2,7 @@
     <div> 
          <div class="flex justify-between">
             <a href="#" class="text-blue-400" @click="$router.back()">
-                 Back
+                 Back 
             </a>
         </div>  
       <form @submit.prevent="submitForm">

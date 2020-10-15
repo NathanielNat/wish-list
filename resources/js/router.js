@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import ExampleComponent from './components/ExampleComponent'
+import Logout from './components/Logout'
 import WishesCreate from './views/WishesCreate'
 import WishesShow from './views/WishesShow'
 import WishesEdit from './views/WishesEdit'
@@ -16,6 +17,7 @@ export default new VueRouter({
         {path:"/wishes/create", component: WishesCreate},
         {path:"/wishes/:id", component: WishesShow},
         {path:"/wishes/:id/edit", component: WishesEdit},
+        {path:"/logout", component: Logout},
     ],
     mode:'history'
 })
